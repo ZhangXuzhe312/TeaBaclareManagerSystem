@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+ "http://mybaties.org/dtd/mybatis-3-config.dtd" >
+
+
+<configuration>
+<!-- 引入jdbc资源文件 -->
+<properties resource="jdbc.properties"></properties> 
+    <!-- 可以配置多个运行环境，但是每个SqlSessionFactory 实例只能选择一个运行环境 -->
+    <environments default="environment">
+        <environment id="environment">
+            <transactionManager type="JDBC"></transactionManager>
+            <!-- UNPOOLED POOLED JNDI -->
+            <!-- 数据库连接池 -->
+            <dataSource type="UNPOOLED">
+                <property name="driver" value="${jdbc.driver}" />
+                <property name="url" value="${jdbc.url}" />
+                <property name="username" value="${jdbc.username}" />
+                <property name="password" value="${jdbc.password}" />
+            </dataSource>
+          
+        </environment>
+    </environments>
+    
+    <!--写好的sql文件一定要注册到全局配置文件中,如果在包下就com/...,如果都在config下,直接写名字  -->
+    <mappers>
+        <mapper resource="com/haut/mapper/LoginUserMapper.xml"/>
+    </mappers>
+</configuration>
